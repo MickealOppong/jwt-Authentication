@@ -1,0 +1,29 @@
+
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.3.0
+    ports:
+      - 3311:3306
+    environment:
+      MYSQL_DATABASE: authDB
+      MYSQL_ROOT_PASSWORD: Singing@1
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+
+  spring-app:
+    image: yawupon/spring-app:1.2
+    ports:
+      - 3000:3000
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/authDB
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Singing@1
+      spring.jpa.hibernate.ddl-auto: create-drop
+    restart: on-failure
+
+    depends_on:
+      - "db"
+

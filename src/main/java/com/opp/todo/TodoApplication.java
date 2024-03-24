@@ -1,0 +1,16 @@
+package com.opp.todo;
+
+import com.opp.todo.security.RsaKeyProperties;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+@SpringBootApplication
+@EnableConfigurationProperties(RsaKeyProperties.class)
+public class TodoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TodoApplication.class, args);
+	}
+
+}
